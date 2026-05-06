@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starn Marketing — Less Stress. More Results.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2957;
+      --teal:   #00C2CB;
+      --purple: #7C3AED;
+      --pink:   #EC4899;
+      --orange: #F97316;
+      --yellow: #FBBF24;
+      --light:  #F0F4FF;
+      --white:  #FFFFFF;
+      --text:   #1B2957;
+      --muted:  #64748B;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(27,41,87,0.08);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(27,41,87,0.10); }
+    .nav-logo img { height: 48px; object-fit: contain; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 0.9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff; font-weight: 700; font-size: 0.9rem;
+      padding: 10px 24px; border-radius: 50px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,194,203,0.35); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; padding: 120px 5% 80px;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #F0F4FF 0%, #EAF9FB 50%, #F3EEFF 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,194,203,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -150px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,194,203,0.12); border: 1px solid rgba(0,194,203,0.3);
+      color: var(--teal); font-weight: 600; font-size: 0.8rem;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .hero-badge::before { content: '★'; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; line-height: 1.12;
+      color: var(--navy); margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff; font-weight: 700; font-size: 1rem;
+      padding: 16px 36px; border-radius: 50px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,194,203,0.4); }
+    .btn-secondary {
+      background: transparent; border: 2px solid var(--navy);
+      color: var(--navy); font-weight: 700; font-size: 1rem;
+      padding: 14px 36px; border-radius: 50px; text-decoration: none;
+      transition: .2s; display: inline-block;
+    }
+    .btn-secondary:hover { background: var(--navy); color: #fff; }
+    .hero-stats { display: flex; gap: 32px; margin-top: 48px; flex-wrap: wrap; }
+    .stat-item { text-align: left; }
+    .stat-num { font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1; }
+    .stat-num span { background: linear-gradient(135deg, var(--teal), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 4px; }
+    .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+    .hero-card-main {
+      background: #fff; border-radius: 24px;
+      box-shadow: 0 24px 64px rgba(27,41,87,0.14);
+      padding: 32px; width: 340px; position: relative; z-index: 2;
+    }
+    .hero-card-main .card-tag {
+      display: inline-block; background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; margin-bottom: 16px;
+    }
+    .hero-card-main h3 { font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .hero-card-main p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .metric-row { display: flex; gap: 16px; }
+    .metric-box { flex: 1; background: var(--light); border-radius: 12px; padding: 12px; text-align: center; }
+    .metric-box .m-val { font-size: 1.4rem; font-weight: 900; color: var(--navy); }
+    .metric-box .m-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 500; }
+    .hero-card-float {
+      position: absolute; background: #fff; border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(27,41,87,0.12); padding: 14px 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-card-float .icon { font-size: 1.4rem; }
+    .hero-card-float .fc-text strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--navy); }
+    .hero-card-float .fc-text span { font-size: 0.72rem; color: var(--muted); }
+    .float-1 { top: -20px; right: -30px; animation: floatA 4s ease-in-out infinite; }
+    .float-2 { bottom: 0px; left: -40px; animation: floatB 5s ease-in-out infinite; }
+    @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    /* ─── LOGO STRIP ─── */
+    .logo-strip { padding: 40px 5%; background: var(--navy); text-align: center; }
+    .logo-strip p { color: rgba(255,255,255,0.5); font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
+    .logos-row { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; }
+    .logos-row .brand { color: rgba(255,255,255,0.6); font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { padding: 96px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 14px;
+    }
+    .section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+    .section-title span { background: linear-gradient(135deg, var(--teal), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--light); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .service-card {
+      background: #fff; border-radius: var(--radius); padding: 32px;
+      transition: transform .3s, box-shadow .3s;
+      border: 1px solid rgba(27,41,87,0.06);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+    .service-card:nth-child(1)::before { background: linear-gradient(90deg, var(--teal), var(--purple)); }
+    .service-card:nth-child(2)::before { background: linear-gradient(90deg, var(--purple), var(--pink)); }
+    .service-card:nth-child(3)::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
+    .service-card:nth-child(4)::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+    .service-card:nth-child(5)::before { background: linear-gradient(90deg, var(--yellow), var(--teal)); }
+    .service-card:nth-child(6)::before { background: linear-gradient(90deg, var(--teal), var(--pink)); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(27,41,87,0.12); }
+    .service-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
+    .service-card:nth-child(1) .service-icon { background: rgba(0,194,203,0.12); }
+    .service-card:nth-child(2) .service-icon { background: rgba(124,58,237,0.12); }
+    .service-card:nth-child(3) .service-icon { background: rgba(236,72,153,0.12); }
+    .service-card:nth-child(4) .service-icon { background: rgba(249,115,22,0.12); }
+    .service-card:nth-child(5) .service-icon { background: rgba(251,191,36,0.12); }
+    .service-card:nth-child(6) .service-icon { background: rgba(0,194,203,0.12); }
+    .service-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── ABOUT ─── */
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+    .about-bg-shape {
+      width: 380px; height: 380px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,194,203,0.12), rgba(124,58,237,0.12));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-logo-big img { width: 260px; height: auto; filter: drop-shadow(0 20px 40px rgba(27,41,87,0.15)); }
+    .about-float-card { position: absolute; background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(27,41,87,0.12); padding: 16px 20px; }
+    .afc-1 { bottom: 20px; right: -20px; }
+    .afc-2 { top: 20px; left: -20px; }
+    .afc-label { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .afc-value { font-size: 1.3rem; font-weight: 900; color: var(--navy); }
+    .afc-value span { background: linear-gradient(135deg, var(--teal), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .about-points { list-style: none; margin: 28px 0 36px; display: flex; flex-direction: column; gap: 16px; }
+    .about-points li { display: flex; align-items: flex-start; gap: 14px; font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+    .about-points li::before {
+      content: '✓'; min-width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff; font-weight: 800; font-size: 0.8rem;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .about-points li strong { color: var(--navy); }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--navy); }
+    .process .section-tag { color: var(--teal); }
+    .process .section-title { color: #fff; }
+    .process .section-sub { color: rgba(255,255,255,0.6); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+    .process-step { position: relative; text-align: center; padding: 32px 20px; }
+    .process-step:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 38px; color: rgba(255,255,255,0.2); font-size: 1.4rem; }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 2px solid rgba(0,194,203,0.4);
+      color: var(--teal); font-size: 1.5rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .process-step h3 { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .process-step p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ─── WHY US ─── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .why-card {
+      padding: 32px; border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(0,194,203,0.06), rgba(124,58,237,0.06));
+      border: 1px solid rgba(27,41,87,0.08); transition: transform .3s;
+    }
+    .why-card:hover { transform: translateY(-4px); }
+    .why-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .why-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .why-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--light); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .testi-card {
+      background: #fff; border-radius: var(--radius); padding: 32px;
+      box-shadow: 0 4px 24px rgba(27,41,87,0.07); transition: transform .3s;
+    }
+    .testi-card:hover { transform: translateY(-4px); }
+    .stars { color: var(--yellow); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-card blockquote { font-size: 0.92rem; color: var(--muted); line-height: 1.8; font-style: italic; margin-bottom: 24px; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 1rem;
+    }
+    .author-info strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+    .author-info span { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #2d1b69 50%, #1a3a5c 100%);
+      padding: 96px 5%; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,194,203,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner .section-tag { color: var(--teal); }
+    .cta-banner h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 20px; }
+    .cta-banner h2 span { background: linear-gradient(135deg, var(--teal), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-banner p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--navy); font-weight: 700; font-size: 1rem;
+      padding: 16px 36px; border-radius: 50px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s; display: inline-block;
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255,255,255,0.3); }
+    .btn-outline-white {
+      background: transparent; border: 2px solid rgba(255,255,255,0.4);
+      color: #fff; font-weight: 700; font-size: 1rem;
+      padding: 14px 36px; border-radius: 50px; text-decoration: none;
+      transition: .2s; display: inline-block;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .promise-tag {
+      margin-top: 40px; display: inline-flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.5); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .promise-tag::before, .promise-tag::after { content: '★'; color: var(--yellow); }
+
+    /* ─── FOOTER ─── */
+    footer { background: #0D1628; padding: 64px 5% 32px; color: rgba(255,255,255,0.6); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { height: 44px; object-fit: contain; margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.87rem; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.87rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--teal); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-bottom p { font-size: 0.82rem; }
+    .footer-socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,0.6);
+      font-size: 0.85rem; font-weight: 700; transition: background .2s, color .2s;
+    }
+    .social-btn:hover { background: var(--teal); color: #fff; }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-step::after { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 6%; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-inner, .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { display: none; }
+      .services-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="ChatGPT Image May 5, 2026, 06_39_23 PM.png" alt="Starn Marketing" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#testimonials">Results</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Free Strategy Call</a>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Trusted by 100+ Growing Businesses</div>
+      <h1>We Handle the Marketing.<br /><span>You Handle the Success.</span></h1>
+      <p class="hero-sub">Starn Marketing brings together strategy, creativity, and execution to solve your marketing problems and drive real, measurable growth — without the overwhelm.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get Free Strategy Call</a>
+        <a href="#services" class="btn-secondary">See Our Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num"><span>3×</span></div>
+          <div class="stat-label">Average ROI</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span>100+</span></div>
+          <div class="stat-label">Brands Scaled</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span>98%</span></div>
+          <div class="stat-label">Client Retention</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="card-tag">Live Campaign Results</div>
+        <h3>Q1 Growth Report</h3>
+        <p>Revenue-driven marketing that speaks for itself.</p>
+        <div class="metric-row">
+          <div class="metric-box">
+            <div class="m-val">↑ 187%</div>
+            <div class="m-lbl">Leads Generated</div>
+          </div>
+          <div class="metric-box">
+            <div class="m-val">4.2×</div>
+            <div class="m-lbl">ROAS</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card-float float-1">
+        <span class="icon">🎯</span>
+        <div class="fc-text">
+          <strong>Campaign Live</strong>
+          <span>Paid Ads performing at peak</span>
+        </div>
+      </div>
+      <div class="hero-card-float float-2">
+        <span class="icon">📈</span>
+        <div class="fc-text">
+          <strong>+42% This Month</strong>
+          <span>Organic traffic growth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOGO STRIP ─── -->
+<div class="logo-strip">
+  <p>Trusted by businesses across industries</p>
+  <div class="logos-row">
+    <span class="brand">Shopify</span>
+    <span class="brand">HubSpot</span>
+    <span class="brand">Meta Ads</span>
+    <span class="brand">Google</span>
+    <span class="brand">Klaviyo</span>
+    <span class="brand">Semrush</span>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">One Agency. <span>Every Solution.</span></h2>
+      <p class="section-sub">From social media to paid ads to website design — we handle every piece of your marketing so nothing falls through the cracks.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <h3>Social Media Marketing</h3>
+        <p>Strategic content creation, community management, and growth campaigns across Instagram, Facebook, LinkedIn, TikTok, and more.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌐</div>
+        <h3>Website Design & Dev</h3>
+        <p>High-converting websites and landing pages built for speed, aesthetics, and results. From concept to launch, we handle it all.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎯</div>
+        <h3>Paid Ads (Meta & Google)</h3>
+        <p>ROI-driven ad campaigns that target the right audience, at the right time, with the right message. We make every dollar count.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <h3>Analytics & Reporting</h3>
+        <p>Crystal-clear reporting that shows exactly what's working. No jargon — just actionable data that informs every decision we make.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✍️</div>
+        <h3>Content Creation</h3>
+        <p>Scroll-stopping graphics, videos, and copy that authentically represent your brand and connect with your target audience.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📧</div>
+        <h3>Email Marketing</h3>
+        <p>Automated email sequences and campaigns that nurture leads, retain customers, and drive consistent revenue on autopilot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="about-bg-shape">
+          <div class="about-logo-big">
+            <img src="ChatGPT Image May 5, 2026, 06_39_23 PM.png" alt="Starn Marketing Logo" />
+          </div>
+        </div>
+        <div class="about-float-card afc-1">
+          <div class="afc-label">Client Satisfaction</div>
+          <div class="afc-value"><span>98%</span></div>
+        </div>
+        <div class="about-float-card afc-2">
+          <div class="afc-label">Avg. Revenue Growth</div>
+          <div class="afc-value"><span>+187%</span></div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title">Built for Business Owners <span>Done With Overwhelm</span></h2>
+        <p style="color:var(--muted); line-height:1.8; margin-bottom:8px;">Starn Marketing was built for business owners who are done being overwhelmed by marketing. We bring together strategy, creativity, and execution to solve your marketing problems and drive real, measurable growth.</p>
+        <p style="color:var(--muted); line-height:1.8; font-weight:600; font-size:0.95rem;">One solution. Less stress. More results.</p>
+        <ul class="about-points">
+          <li><strong>Strategy first</strong> — every campaign starts with a clear, data-backed growth plan</li>
+          <li><strong>Full execution</strong> — we don't just advise, we build and run it all for you</li>
+          <li><strong>Radical transparency</strong> — you always know what we're doing and why it's working</li>
+          <li><strong>Partnerships, not projects</strong> — we grow alongside you for the long term</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Start Your Growth Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <span class="section-tag">How We Work</span>
+      <h2 class="section-title" style="color:#fff">From <span>Strategy</span> to Results in 4 Steps</h2>
+      <p class="section-sub">A proven system that removes guesswork and delivers measurable growth.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">1</div>
+        <h3>Free Strategy Call</h3>
+        <p>We learn everything about your business, goals, and current marketing. No pitch — just a real conversation about what will actually move the needle.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">2</div>
+        <h3>Custom Growth Plan</h3>
+        <p>We build a tailored marketing roadmap — channels, messaging, budgets, and timelines — all aligned to your specific revenue goals.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">3</div>
+        <h3>Full Execution</h3>
+        <p>Our team launches and manages everything. Content, ads, emails, SEO — handled end-to-end so you can focus on running your business.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">4</div>
+        <h3>Optimize & Scale</h3>
+        <p>We track every metric, report clearly, and continuously optimize. As results grow, we scale what's working and cut what isn't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section id="why">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <span class="section-tag">Why Starn</span>
+      <h2 class="section-title">Marketing That <span>Actually Works</span></h2>
+      <p class="section-sub">We're not a generic agency. We're a growth partner that treats your business like our own.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🚀</div>
+        <h3>Results-Driven Mindset</h3>
+        <p>Every decision is tied to measurable outcomes. If it doesn't grow your business, we don't do it. Simple as that.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔍</div>
+        <h3>Full Transparency</h3>
+        <p>No black boxes. You get clear reporting, honest conversations, and access to every campaign we run on your behalf.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <h3>Agile & Fast-Moving</h3>
+        <p>We move quickly, test constantly, and adapt fast. Your marketing never goes stale — we're always optimizing for what's next.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤝</div>
+        <h3>True Partnership</h3>
+        <p>We function as an extension of your team — invested in your success, proactive in communication, and always in your corner.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🎨</div>
+        <h3>Creative Excellence</h3>
+        <p>Strategy without great creative falls flat. We bring both — bold, on-brand content that stops the scroll and drives action.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📐</div>
+        <h3>Custom-Built Systems</h3>
+        <p>No cookie-cutter templates. Every strategy, funnel, and campaign is built specifically for your brand and your audience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials" id="testimonials">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <span class="section-tag">Client Results</span>
+      <h2 class="section-title">Real Businesses. <span>Real Growth.</span></h2>
+      <p class="section-sub">Don't take our word for it — hear from the business owners who trusted Starn with their marketing.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Starn took us from 0 to 150K followers in under 8 months and tripled our monthly revenue through their paid ads strategy. The ROI has been insane."</blockquote>
+        <div class="testi-author">
+          <div class="author-avatar">JR</div>
+          <div class="author-info">
+            <strong>Jessica R.</strong>
+            <span>CEO, Bloom Wellness Co.</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Before Starn, I was throwing money at ads with no idea what was working. Now I have a clear strategy, consistent leads, and finally feel in control of my marketing."</blockquote>
+        <div class="testi-author">
+          <div class="author-avatar">MK</div>
+          <div class="author-info">
+            <strong>Marcus K.</strong>
+            <span>Owner, Atlas Fitness Studios</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The new website Starn built for us converted at nearly 3× our old site from day one. And their content team has completely elevated our brand presence online."</blockquote>
+        <div class="testi-author">
+          <div class="author-avatar">SP</div>
+          <div class="author-info">
+            <strong>Sofia P.</strong>
+            <span>Founder, Luxe Skin Lab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<section class="cta-banner" id="contact">
+  <div class="section-inner">
+    <span class="section-tag">Get Started Today</span>
+    <h2>Less Stress.<br /><span>More Results.</span></h2>
+    <p>Book your free strategy call today and discover exactly what's holding your marketing back — and how we fix it.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@starnmarketing.com" class="btn-white">Book Free Strategy Call</a>
+      <a href="#services" class="btn-outline-white">Explore Services</a>
+    </div>
+    <p class="promise-tag">Less Stress, More Results — That's the Starn Promise</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="ChatGPT Image May 5, 2026, 06_39_23 PM.png" alt="Starn Marketing" style="filter: brightness(0) invert(1) opacity(0.9);" />
+        <p>We handle the marketing. You handle the success. Built for business owners who want real, measurable growth.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">Paid Ads</a></li>
+          <li><a href="#services">Web Design</a></li>
+          <li><a href="#services">Email Marketing</a></li>
+          <li><a href="#services">Content Creation</a></li>
+          <li><a href="#services">Analytics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#testimonials">Results</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@starnmarketing.com">hello@starnmarketing.com</a></li>
+          <li><a href="#contact">Book a Call</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Starn Marketing. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">fb</a>
+        <a href="#" class="social-btn">tw</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    const isOpen = links.style.display === 'flex';
+    if (isOpen) {
+      links.style.display = 'none';
+      cta.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex; flex-direction:column; position:fixed; top:72px; left:0; right:0; background:#fff; padding:24px 5%; gap:20px; box-shadow:0 8px 32px rgba(0,0,0,0.1); z-index:998;';
+      cta.style.cssText = 'display:block; margin:0 5% 24px; text-align:center; position:fixed; top:calc(72px + 164px); left:0; right:0; z-index:998;';
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
