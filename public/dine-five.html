@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dine Five — Fresh Restaurant Meals for Just $5.99</title>
+<meta name="description" content="Dine Five makes fresh, restaurant-prepared meals affordable for everyone — starting at $5.99. Discover local restaurant partners, donate meals, and strengthen your community." />
+<meta name="keywords" content="affordable meals, restaurant partners, meal donation, $5.99 meals, community food, local restaurants" />
+<meta name="theme-color" content="#FF6B35" />
+<meta property="og:title" content="Dine Five — Fresh Restaurant Meals for Just $5.99" />
+<meta property="og:description" content="Affordable, restaurant-prepared meals from local partners. Enjoy quality food, support local business, and help your community." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --orange:#FF6B35;
+    --orange-dark:#E8531C;
+    --red:#C62828;
+    --red-dark:#A31E1E;
+    --cream:#FFF8F0;
+    --cream-deep:#FBEFE2;
+    --charcoal:#222222;
+    --charcoal-soft:#3a3531;
+    --white:#FFFFFF;
+    --ink-60:rgba(34,34,34,.62);
+    --ink-45:rgba(34,34,34,.45);
+    --line:rgba(34,34,34,.10);
+    --shadow-warm:0 18px 50px -20px rgba(198,40,40,.28);
+    --shadow-soft:0 10px 30px -14px rgba(34,34,34,.18);
+    --radius:22px;
+    --radius-sm:14px;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05;letter-spacing:-.01em;font-weight:600}
+  .eyebrow{
+    font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--red);display:inline-block;margin-bottom:14px;
+  }
+  .display{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:600}
+  .lead{font-size:clamp(1.02rem,2.4vw,1.18rem);color:var(--ink-60);max-width:60ch}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.98rem;
+    padding:14px 24px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s;
+    font-family:inherit;
+  }
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:var(--shadow-warm)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 22px 50px -18px rgba(255,107,53,.6)}
+  .btn-red{background:var(--red);color:#fff;box-shadow:0 16px 40px -18px rgba(198,40,40,.55)}
+  .btn-red:hover{transform:translateY(-3px);background:var(--red-dark)}
+  .btn-ghost{background:transparent;color:var(--charcoal);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--charcoal);transform:translateY(-2px)}
+
+  /* App store badges (self-contained SVG) */
+  .store-badge{
+    display:inline-flex;align-items:center;gap:11px;background:var(--charcoal);color:#fff;
+    padding:11px 20px 11px 18px;border-radius:14px;transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+    box-shadow:var(--shadow-soft);
+  }
+  .store-badge:hover{transform:translateY(-3px);box-shadow:0 20px 40px -18px rgba(34,34,34,.5)}
+  .store-badge svg{width:26px;height:26px;flex-shrink:0}
+  .store-badge .sb-top{font-size:.62rem;letter-spacing:.04em;opacity:.85;line-height:1}
+  .store-badge .sb-main{font-size:1.06rem;font-weight:600;line-height:1.1;font-family:'Inter'}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    transition:background .35s var(--ease),box-shadow .35s var(--ease),padding .35s var(--ease);
+    padding:18px 0;
+  }
+  header.scrolled{background:rgba(255,248,240,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:12px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-weight:700;font-size:1.4rem;letter-spacing:-.02em}
+  .logo .mark{
+    width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;
+    background:linear-gradient(135deg,var(--orange),var(--red));font-family:'Fraunces';font-weight:700;font-size:1.15rem;
+    box-shadow:0 8px 18px -8px rgba(198,40,40,.6);
+  }
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:.94rem;font-weight:500;color:var(--charcoal-soft);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--red)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;width:42px;height:42px;border-radius:11px;align-items:center;justify-content:center}
+  .menu-toggle span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px;position:relative;transition:transform .3s,opacity .3s}
+  .menu-toggle span::before,.menu-toggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:var(--charcoal);border-radius:2px;transition:transform .3s,opacity .3s}
+  .menu-toggle span::before{top:-7px}.menu-toggle span::after{top:7px}
+  body.menu-open .menu-toggle span{background:transparent}
+  body.menu-open .menu-toggle span::before{transform:translateY(7px) rotate(45deg)}
+  body.menu-open .menu-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:99;background:var(--cream);
+    transform:translateY(-100%);transition:transform .45s var(--ease);
+    display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px 30px 40px;
+  }
+  body.menu-open .mobile-menu{transform:translateY(0)}
+  .mobile-menu a{font-family:'Fraunces';font-size:1.9rem;font-weight:600;padding:10px 0;border-bottom:1px solid var(--line)}
+  .mobile-menu .btn{margin-top:24px;justify-content:center}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:140px 0 70px;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,107,53,.16),transparent 65%);z-index:0;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;position:relative;z-index:1}
+  .hero h1 .price{color:var(--orange);position:relative;white-space:nowrap}
+  .hero .lead{margin:22px 0 30px}
+  .hero-buttons{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-trust{display:flex;align-items:center;gap:18px;margin-top:28px;font-size:.86rem;color:var(--ink-60)}
+  .hero-trust .stars{color:var(--orange);letter-spacing:1px}
+
+  /* Phone mockup + collage */
+  .hero-visual{position:relative;display:flex;justify-content:center}
+  .phone{
+    position:relative;z-index:3;width:255px;height:520px;border-radius:42px;background:var(--charcoal);
+    padding:11px;box-shadow:0 40px 80px -30px rgba(34,34,34,.55);
+  }
+  .phone-screen{width:100%;height:100%;border-radius:32px;overflow:hidden;background:var(--cream);position:relative;display:flex;flex-direction:column}
+  .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:var(--charcoal);border-radius:0 0 16px 16px;z-index:4}
+  .ps-hero{height:190px;background-size:cover;background-position:center;position:relative}
+  .ps-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55))}
+  .ps-tag{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
+  .ps-tag small{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .ps-tag b{font-family:'Fraunces';font-size:1.15rem}
+  .ps-body{padding:14px;flex:1}
+  .ps-row{display:flex;align-items:center;gap:10px;padding:9px;background:#fff;border-radius:12px;margin-bottom:10px;box-shadow:0 4px 12px -8px rgba(0,0,0,.2)}
+  .ps-thumb{width:42px;height:42px;border-radius:10px;background-size:cover;background-position:center;flex-shrink:0}
+  .ps-row .t1{font-size:.78rem;font-weight:600}
+  .ps-row .t2{font-size:.64rem;color:var(--ink-45)}
+  .ps-price{margin-left:auto;font-weight:700;color:var(--orange);font-size:.82rem}
+  .collage-img{
+    position:absolute;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-soft);z-index:1;
+    background-size:cover;background-position:center;
+  }
+  .ci-1{width:130px;height:130px;top:20px;left:-10px;z-index:2;animation:float 6s ease-in-out infinite}
+  .ci-2{width:120px;height:160px;bottom:30px;right:-18px;animation:float 7s ease-in-out infinite .8s}
+  .ci-3{width:100px;height:100px;bottom:-12px;left:10px;animation:float 5.5s ease-in-out infinite .4s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .price-bubble{
+    position:absolute;top:-6px;right:6px;z-index:5;background:var(--red);color:#fff;width:78px;height:78px;border-radius:50%;
+    display:grid;place-items:center;text-align:center;box-shadow:0 16px 30px -12px rgba(198,40,40,.7);transform:rotate(-8deg);
+  }
+  .price-bubble small{font-size:.55rem;letter-spacing:.06em;opacity:.9;display:block}
+  .price-bubble b{font-family:'Fraunces';font-size:1.15rem;line-height:1}
+
+  /* ---------- Section scaffolding ---------- */
+  section{position:relative}
+  .section-pad{padding:90px 0}
+  .section-head{max-width:660px;margin-bottom:54px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head h2{font-size:clamp(1.9rem,4.6vw,3rem)}
+  .section-head p{margin-top:16px}
+
+  /* Mission */
+  .mission{background:var(--white)}
+  .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .value-card{padding:30px 24px;border-radius:var(--radius);background:var(--cream);border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+  .value-icon{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;background:linear-gradient(135deg,rgba(255,107,53,.16),rgba(198,40,40,.12));color:var(--red)}
+  .value-icon svg{width:27px;height:27px}
+  .value-card h3{font-size:1.18rem;margin-bottom:8px}
+  .value-card p{font-size:.92rem;color:var(--ink-60)}
+
+  /* How it works */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step}
+  .step{position:relative;padding:32px 24px 28px;border-radius:var(--radius);background:var(--white);border:1px solid var(--line);overflow:hidden;transition:transform .3s var(--ease)}
+  .step:hover{transform:translateY(-6px)}
+  .step .num{font-family:'Fraunces';font-weight:700;font-size:2.6rem;color:var(--orange);opacity:.25;line-height:1;margin-bottom:14px}
+  .step .icon{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--cream);color:var(--red);margin-bottom:16px}
+  .step .icon svg{width:24px;height:24px}
+  .step h3{font-size:1.1rem;margin-bottom:7px}
+  .step p{font-size:.9rem;color:var(--ink-60)}
+  .step::after{content:"";position:absolute;top:0;left:0;height:4px;width:100%;background:linear-gradient(90deg,var(--orange),var(--red));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .step:hover::after{transform:scaleX(1)}
+
+  /* Cuisine */
+  .cuisine{background:var(--white)}
+  .cuisine-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .cuisine-card{position:relative;border-radius:var(--radius-sm);overflow:hidden;height:180px;cursor:default;box-shadow:var(--shadow-soft)}
+  .cuisine-card .ph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .7s var(--ease)}
+  .cuisine-card:hover .ph{transform:scale(1.09)}
+  .cuisine-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.72))}
+  .cuisine-card span{position:absolute;left:16px;bottom:14px;z-index:2;color:#fff;font-family:'Fraunces';font-weight:600;font-size:1.2rem}
+  .cuisine-card small{position:absolute;left:16px;bottom:40px;z-index:2;color:rgba(255,255,255,.8);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+
+  /* Impact */
+  .impact{background:linear-gradient(160deg,var(--red),var(--red-dark));color:#fff}
+  .impact .eyebrow{color:#FFD2B8}
+  .impact .lead{color:rgba(255,255,255,.82)}
+  .impact-top{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-bottom:56px}
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .stat{padding:24px;border-radius:var(--radius-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+  .stat .n{font-family:'Fraunces';font-weight:700;font-size:2.5rem;line-height:1;color:#fff}
+  .stat .l{font-size:.84rem;color:rgba(255,255,255,.78);margin-top:6px}
+  .impact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .impact-card{padding:28px 24px;border-radius:var(--radius);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+  .impact-card .icon{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#FFD2B8;margin-bottom:16px}
+  .impact-card .icon svg{width:25px;height:25px}
+  .impact-card h3{font-size:1.12rem;margin-bottom:8px;color:#fff}
+  .impact-card p{font-size:.9rem;color:rgba(255,255,255,.78)}
+
+  /* Recipient */
+  .recipient{background:var(--white)}
+  .recipient-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:50px;align-items:center}
+  .recipient-visual{border-radius:var(--radius);overflow:hidden;height:360px;background-size:cover;background-position:center;position:relative;box-shadow:var(--shadow-soft)}
+  .recipient-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(198,40,40,.25),transparent 60%)}
+  .recipient-list{margin-top:26px;display:grid;gap:16px}
+  .recipient-list li{list-style:none;display:flex;gap:14px;align-items:flex-start}
+  .recipient-list .dot{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--red));display:grid;place-items:center;color:#fff;margin-top:2px}
+  .recipient-list .dot svg{width:14px;height:14px}
+  .recipient-list b{display:block;font-size:1rem}
+  .recipient-list p{font-size:.9rem;color:var(--ink-60)}
+
+  /* Features */
+  .features{background:var(--cream-deep)}
+  .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .feature-card{background:var(--white);border-radius:var(--radius);padding:28px 24px;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+  .feature-card .icon{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;background:linear-gradient(135deg,var(--orange),var(--red));color:#fff}
+  .feature-card .icon svg{width:25px;height:25px}
+  .feature-card h3{font-size:1.08rem;margin-bottom:7px}
+  .feature-card p{font-size:.9rem;color:var(--ink-60)}
+  .features-note{text-align:center;margin-top:34px;font-size:.86rem;color:var(--ink-45);max-width:60ch;margin-left:auto;margin-right:auto}
+
+  /* Testimonials */
+  .testimonials{background:var(--white)}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .t-card{padding:32px 28px;border-radius:var(--radius);background:var(--cream);border:1px solid var(--line);position:relative}
+  .t-card .quote{font-family:'Fraunces';font-size:3rem;color:var(--orange);opacity:.3;line-height:.6;height:24px}
+  .t-card p{font-size:1.02rem;color:var(--charcoal-soft);margin:14px 0 22px;font-style:italic}
+  .t-meta{display:flex;align-items:center;gap:12px}
+  .t-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-family:'Fraunces';background:linear-gradient(135deg,var(--orange),var(--red))}
+  .t-meta b{font-size:.92rem;display:block}
+  .t-meta small{font-size:.78rem;color:var(--ink-45)}
+
+  /* Download */
+  .download{background:linear-gradient(160deg,var(--charcoal),#1a1a1a);color:#fff;text-align:center}
+  .download .eyebrow{color:var(--orange)}
+  .download h2{color:#fff}
+  .download .lead{color:rgba(255,255,255,.72);margin:16px auto 0}
+  .qr-row{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;margin-top:48px}
+  .qr-box{background:#fff;border-radius:var(--radius);padding:24px;width:230px;color:var(--charcoal)}
+  .qr-box .qr{width:160px;height:160px;margin:0 auto 16px;border-radius:10px;display:block}
+  .qr-box .store-badge{width:100%;justify-content:center;margin-top:0}
+  .qr-box p{font-size:.82rem;color:var(--ink-45);margin-bottom:14px}
+  .dl-trust{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;margin-top:48px;color:rgba(255,255,255,.7);font-size:.86rem}
+  .dl-trust div{display:flex;align-items:center;gap:8px}
+  .dl-trust svg{width:18px;height:18px;color:var(--orange)}
+
+  /* Footer */
+  footer{background:var(--cream);padding:64px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:46px}
+  .foot-brand p{font-size:.92rem;color:var(--ink-60);margin:16px 0 22px;max-width:34ch}
+  .socials{display:flex;gap:12px}
+  .socials a{width:40px;height:40px;border-radius:11px;background:var(--white);border:1px solid var(--line);display:grid;place-items:center;color:var(--charcoal-soft);transition:transform .25s var(--ease),background .25s,color .25s}
+  .socials a:hover{transform:translateY(-3px);background:var(--orange);color:#fff;border-color:var(--orange)}
+  .socials svg{width:19px;height:19px}
+  .foot-col h4{font-family:'Inter';font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);margin-bottom:18px}
+  .foot-col a{display:block;font-size:.92rem;color:var(--ink-60);margin-bottom:12px;transition:color .2s}
+  .foot-col a:hover{color:var(--red)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:26px;border-top:1px solid var(--line);font-size:.84rem;color:var(--ink-45)}
+  .foot-bottom .lp{display:flex;gap:22px;flex-wrap:wrap}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:980px){
+    .nav-links,.nav-cta .btn{display:none}
+    .menu-toggle{display:flex}
+    .hero-grid{grid-template-columns:1fr;gap:54px;text-align:center}
+    .hero .lead{margin-left:auto;margin-right:auto}
+    .hero-buttons,.hero-trust{justify-content:center}
+    .hero::before{right:-40%}
+    .value-grid,.steps,.feature-grid{grid-template-columns:repeat(2,1fr)}
+    .cuisine-grid,.impact-cards,.t-grid{grid-template-columns:repeat(2,1fr)}
+    .impact-top,.recipient-grid{grid-template-columns:1fr;gap:34px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .foot-brand{grid-column:1 / -1}
+  }
+  @media(max-width:600px){
+    .section-pad{padding:64px 0}
+    .value-grid,.steps,.cuisine-grid,.impact-cards,.feature-grid,.t-grid,.stat-grid{grid-template-columns:1fr}
+    .stat-grid{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .hero{padding:120px 0 50px}
+    .t-grid .t-card{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="mark">5</span> Dine Five</a>
+    <nav class="nav-links">
+      <a href="#mission">Mission</a>
+      <a href="#how">How it works</a>
+      <a href="#cuisines">Cuisines</a>
+      <a href="#impact">Give a meal</a>
+      <a href="#download">Get the app</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#impact" class="btn btn-red">Donate a meal</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#mission">Mission</a>
+  <a href="#how">How it works</a>
+  <a href="#cuisines">Cuisines</a>
+  <a href="#impact">Give a meal</a>
+  <a href="#download">Get the app</a>
+  <a href="#impact" class="btn btn-red">Donate a meal</a>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Fresh meals · Real restaurants · One fair price</span>
+      <h1 class="display reveal d1">Fresh restaurant meals for just <span class="price">$5.99</span></h1>
+      <p class="lead reveal d2">Discover affordable, restaurant-prepared meals from local kitchens serving flavors from around the world. Enjoy quality food, support local businesses, and help strengthen your community.</p>
+      <div class="hero-buttons reveal d3">
+        <a href="#download" class="store-badge" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.3c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.6-.8 1.7-1.3 2.6-1.4zM19.8 17.2c-.5 1.2-.8 1.7-1.5 2.7-.9 1.4-2.2 3.1-3.8 3.1-1.4 0-1.8-.9-3.7-.9s-2.4.9-3.7.9c-1.6 0-2.8-1.5-3.8-2.9-2.6-3.9-2.9-8.5-1.3-11 1.1-1.7 2.9-2.8 4.6-2.8 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.8 4.2 2.2-3.7 2-3.1 7.3.4 8.7z"/></svg>
+          <span><span class="sb-top">Download on the</span><span class="sb-main">App Store</span></span>
+        </a>
+        <a href="#download" class="store-badge" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M3.6 2.2 13.4 12 3.6 21.8c-.4-.2-.6-.6-.6-1.2V3.4c0-.6.2-1 .6-1.2z"/><path fill="#FBBC04" d="M17.3 8.2 13.4 12l3.9 3.8 3.3-1.9c.9-.5.9-1.8 0-2.3l-3.3-1.4z" transform="translate(-.5 0)"/><path fill="#34A853" d="M3.6 21.8 13.4 12l3.5 3.5-10.3 6c-.9.5-1.9.5-3-1.7z" opacity=".9"/><path fill="#4285F4" d="M3.6 2.2 16.9 8.5 13.4 12 3.6 2.2z" opacity=".9"/></svg>
+          <span><span class="sb-top">Get it on</span><span class="sb-main">Google Play</span></span>
+        </a>
+      </div>
+      <div class="hero-trust reveal d4">
+        <span class="stars">★★★★★</span>
+        <span>Loved by neighbors, students &amp; families</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="collage-img ci-1" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80&auto=format&fit=crop')"></div>
+      <div class="collage-img ci-2" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80&auto=format&fit=crop')"></div>
+      <div class="collage-img ci-3" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80&auto=format&fit=crop')"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ps-hero" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80&auto=format&fit=crop')">
+            <div class="ps-tag"><small>Near you</small><b>Today's fresh menu</b></div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-row">
+              <div class="ps-thumb" style="background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80&auto=format&fit=crop')"></div>
+              <div><div class="t1">Smash Burger Plate</div><div class="t2">Corner Diner · American</div></div>
+              <div class="ps-price">$5.99</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-thumb" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&q=80&auto=format&fit=crop')"></div>
+              <div><div class="t1">Tonkotsu Ramen</div><div class="t2">Noodle House · Asian</div></div>
+              <div class="ps-price">$5.99</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-thumb" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&q=80&auto=format&fit=crop')"></div>
+              <div><div class="t1">Street Tacos</div><div class="t2">La Cocina · Latin</div></div>
+              <div class="ps-price">$5.99</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="price-bubble"><span><small>From</small><b>$5.99</b></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mission ===== -->
+<section class="mission section-pad" id="mission">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Our mission</span>
+      <h2>Food should be affordable for everyone</h2>
+      <p class="lead" style="margin:16px auto 0">Dine Five was created with a simple mission: make fresh restaurant meals accessible to everyone. By partnering with local restaurants and community supporters, we help families, students, seniors, and individuals enjoy quality meals at an affordable price.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal d1">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Affordable</h3>
+        <p>Every meal starts at one fair price — $5.99 — so a good meal never depends on a big budget.</p>
+      </div>
+      <div class="value-card reveal d2">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Community</h3>
+        <p>Neighbors helping neighbors. Donated meals keep local kitchens busy and tables full.</p>
+      </div>
+      <div class="value-card reveal d3">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <h3>Fresh food</h3>
+        <p>Cooked to order by real restaurants — not reheated, not factory-made. Just fresh.</p>
+      </div>
+      <div class="value-card reveal d4">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Accessible</h3>
+        <p>One tap in the app. Available to anyone — and free for those who need a hand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section class="section-pad" id="how" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How Dine Five works</span>
+      <h2>Simple. Affordable. Community driven.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal d1">
+        <div class="num">01</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Download the app</h3>
+        <p>Get Dine Five free on the App Store or Google Play in seconds.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="num">02</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Browse local partners</h3>
+        <p>Explore restaurants near you serving cuisines from every culture.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="num">03</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+        <h3>Order fresh meals</h3>
+        <p>Every meal starts at just $5.99 — pick what you're craving today.</p>
+      </div>
+      <div class="step reveal d4">
+        <div class="num">04</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Enjoy &amp; give back</h3>
+        <p>Great food while supporting local businesses and your community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Cuisines ===== -->
+<section class="cuisine section-pad" id="cuisines">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Restaurant partners</span>
+      <h2>Flavors from every culture</h2>
+      <p class="lead" style="margin:16px auto 0">Dine Five partners with restaurants representing a wide variety of cultures and cuisines, giving customers access to authentic flavors and unique dining experiences.</p>
+    </div>
+    <div class="cuisine-grid">
+      <div class="cuisine-card reveal d1"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80&auto=format&fit=crop')"></div><small>Comfort</small><span>American</span></div>
+      <div class="cuisine-card reveal d2"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1606471191009-63994c53433b?w=600&q=80&auto=format&fit=crop')"></div><small>Island</small><span>Caribbean</span></div>
+      <div class="cuisine-card reveal d3"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&q=80&auto=format&fit=crop')"></div><small>Bold spice</small><span>African</span></div>
+      <div class="cuisine-card reveal d1"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80&auto=format&fit=crop')"></div><small>Vibrant</small><span>Latin American</span></div>
+      <div class="cuisine-card reveal d2"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80&auto=format&fit=crop')"></div><small>Umami</small><span>Asian</span></div>
+      <div class="cuisine-card reveal d3"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80&auto=format&fit=crop')"></div><small>Sun-kissed</small><span>Mediterranean</span></div>
+      <div class="cuisine-card reveal d1"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80&auto=format&fit=crop')"></div><small>Homestyle</small><span>Soul Food</span></div>
+      <div class="cuisine-card reveal d2"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&auto=format&fit=crop')"></div><small>Plant-forward</small><span>Vegetarian &amp; Vegan</span></div>
+      <div class="cuisine-card reveal d3"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80&auto=format&fit=crop')"></div><small>Aromatic</small><span>Middle Eastern</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Community Impact ===== -->
+<section class="impact section-pad" id="impact">
+  <div class="wrap">
+    <div class="impact-top">
+      <div class="reveal">
+        <span class="eyebrow">Community impact</span>
+        <h2 style="font-size:clamp(1.9rem,4.6vw,3rem)">Give a meal. Change a life.</h2>
+        <p class="lead" style="margin:16px 0 26px">Every donated meal helps provide fresh, restaurant-prepared food to someone facing hardship. Dine Five makes it easy for donors to support their communities while helping local restaurants thrive.</p>
+        <a href="#download" class="btn btn-primary">Donate a meal</a>
+      </div>
+      <div class="stat-grid reveal d2">
+        <div class="stat"><div class="n" data-count="128000" data-suffix="+">0</div><div class="l">Meals donated</div></div>
+        <div class="stat"><div class="n" data-count="42000" data-suffix="+">0</div><div class="l">Community members helped</div></div>
+        <div class="stat"><div class="n" data-count="540" data-suffix="+">0</div><div class="l">Restaurant partners</div></div>
+        <div class="stat"><div class="n" data-count="36" data-suffix="">0</div><div class="l">Cities served</div></div>
+      </div>
+    </div>
+    <div class="impact-cards">
+      <div class="impact-card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.9-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <h3>Donate in one tap</h3>
+        <p>Give a single meal or sponsor many — individuals, businesses, and groups all welcome.</p>
+      </div>
+      <div class="impact-card reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></div>
+        <h3>100% goes to meals</h3>
+        <p>Your donation pays a local restaurant to cook a fresh meal for a neighbor in need.</p>
+      </div>
+      <div class="impact-card reveal d3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9l-5 5-3-3-4 4"/></svg></div>
+        <h3>See your impact</h3>
+        <p>Track the meals you've funded and watch your community impact grow over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recipient Assistance ===== -->
+<section class="recipient section-pad">
+  <div class="wrap recipient-grid">
+    <div class="recipient-visual reveal" style="background-image:url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80&auto=format&fit=crop')"></div>
+    <div class="reveal d1">
+      <span class="eyebrow">Recipient assistance</span>
+      <h2 style="font-size:clamp(1.9rem,4.6vw,3rem)">Support for those who need it most</h2>
+      <p class="lead" style="margin:16px 0 0">Through the Dine Five community program, eligible individuals can access donated meals directly through the app. Users may claim up to one donated meal per day when available.</p>
+      <ul class="recipient-list">
+        <li>
+          <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><b>Quiet and dignified</b><p>No long lines or paperwork — claim a meal privately, right from your phone.</p></div>
+        </li>
+        <li>
+          <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><b>One meal a day</b><p>Eligible users can claim up to one donated meal per day, whenever meals are available.</p></div>
+        </li>
+        <li>
+          <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><b>Real restaurant food</b><p>The same fresh, made-to-order meals everyone else enjoys — never an afterthought.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Food, Beer & Wine ===== -->
+<section class="features section-pad">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">More than meals</span>
+      <h2>More than great meals</h2>
+      <p class="lead" style="margin:16px auto 0">In addition to affordable meals, participating restaurant partners may offer beer and wine where permitted by local laws. Customers can view available beverage options directly within the app.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg></div>
+        <h3>Fresh restaurant meals</h3>
+        <p>Cooked to order by local kitchens — starting at just $5.99 every day.</p>
+      </div>
+      <div class="feature-card reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+        <h3>Diverse cuisine options</h3>
+        <p>Nine cultures and counting — explore authentic flavors from around the world.</p>
+      </div>
+      <div class="feature-card reveal d3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 22h8M12 11v11M5 3h14l-1 8a6 6 0 0 1-12 0L5 3z"/></svg></div>
+        <h3>Beer &amp; wine availability</h3>
+        <p>Where permitted by local law, select partners offer beer and wine in-app.</p>
+      </div>
+      <div class="feature-card reveal d4">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Convenient mobile ordering</h3>
+        <p>Browse, order, and donate from anywhere — all from one simple app.</p>
+      </div>
+    </div>
+    <p class="features-note reveal">Beer and wine availability varies by location and is offered only by participating partners where permitted by local laws.</p>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="testimonials section-pad">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2>What people are saying</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal d1">
+        <div class="quote">"</div>
+        <p>Dine Five helps me enjoy fresh meals without stretching my budget.</p>
+        <div class="t-meta"><div class="t-avatar">M</div><div><b>Maya R.</b><small>Customer</small></div></div>
+      </div>
+      <div class="t-card reveal d2">
+        <div class="quote">"</div>
+        <p>Dine Five brings new customers to our restaurant while helping us serve the community.</p>
+        <div class="t-meta"><div class="t-avatar">J</div><div><b>Joel &amp; Ana</b><small>Restaurant partner</small></div></div>
+      </div>
+      <div class="t-card reveal d3">
+        <div class="quote">"</div>
+        <p>I love knowing my donations help provide real meals to people who need them.</p>
+        <div class="t-meta"><div class="t-avatar">D</div><div><b>Devon T.</b><small>Donor</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Download ===== -->
+<section class="download section-pad" id="download">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-bottom:0">
+      <span class="eyebrow">Get started today</span>
+      <h2>Download the Dine Five app</h2>
+      <p class="lead">Discover affordable meals, community support programs, and local restaurant partners — all in one place.</p>
+    </div>
+    <div class="qr-row">
+      <div class="qr-box reveal d1">
+        <svg class="qr" viewBox="0 0 100 100" id="qrApple" aria-label="App Store QR code"></svg>
+        <p>Scan for iPhone</p>
+        <a href="#" class="store-badge" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.3c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.6-.8 1.7-1.3 2.6-1.4zM19.8 17.2c-.5 1.2-.8 1.7-1.5 2.7-.9 1.4-2.2 3.1-3.8 3.1-1.4 0-1.8-.9-3.7-.9s-2.4.9-3.7.9c-1.6 0-2.8-1.5-3.8-2.9-2.6-3.9-2.9-8.5-1.3-11 1.1-1.7 2.9-2.8 4.6-2.8 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.8 4.2 2.2-3.7 2-3.1 7.3.4 8.7z"/></svg>
+          <span><span class="sb-top">Download on the</span><span class="sb-main">App Store</span></span>
+        </a>
+      </div>
+      <div class="qr-box reveal d2">
+        <svg class="qr" viewBox="0 0 100 100" id="qrGoogle" aria-label="Google Play QR code"></svg>
+        <p>Scan for Android</p>
+        <a href="#" class="store-badge" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M3.6 2.2 13.4 12 3.6 21.8c-.4-.2-.6-.6-.6-1.2V3.4c0-.6.2-1 .6-1.2z"/><path fill="#FBBC04" d="M16.4 8.2 12.9 12l3.5 3.8 3.3-1.9c.9-.5.9-1.8 0-2.3l-3.3-1.4z"/><path fill="#34A853" d="M3.6 21.8 13.4 12l3.5 3.5-10.3 6c-.9.5-1.9.5-3-1.7z" opacity=".9"/><path fill="#4285F4" d="M3.6 2.2 16.9 8.5 13.4 12 3.6 2.2z" opacity=".9"/></svg>
+          <span><span class="sb-top">Get it on</span><span class="sb-main">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+    <div class="dl-trust reveal">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z"/></svg> Free to download</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> No subscription needed</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.9-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg> Give back as you go</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo"><span class="mark">5</span> Dine Five</a>
+        <p>Fresh restaurant meals for just $5.99 — bringing affordable food and community support to neighborhoods everywhere.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.6 7.5L22 22h-6l-4.7-6.1L5.8 22H3l7-8L2 2h6.2l4.3 5.6L18.2 2zm-2.1 18h1.6L8 3.9H6.3L16.1 20z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.8V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2a3 3 0 1 0 2 2.8V2h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#mission">About</a>
+        <a href="#download">Contact</a>
+        <a href="#cuisines">Restaurant partnerships</a>
+      </div>
+      <div class="foot-col">
+        <h4>Community</h4>
+        <a href="#impact">Donation program</a>
+        <a href="#impact">Recipient assistance</a>
+        <a href="#impact">Give a meal</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Dine Five. All rights reserved.</span>
+      <div class="lp"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobile menu
+  const toggle = document.getElementById('menuToggle');
+  toggle.addEventListener('click', () => {
+    const open = document.body.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a =>
+    a.addEventListener('click', () => { document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded', false); })
+  );
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Animated counters
+  const fmt = n => n >= 1000 ? Math.round(n/1000) + 'K' : n;
+  const countUp = (el) => {
+    const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+    let start = 0; const dur = 1600, t0 = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - t0)/dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * eased)) + (p===1?suffix:'');
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const cIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ countUp(e.target); cIo.unobserve(e.target);} });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el => cIo.observe(el));
+
+  // Lightweight faux-QR placeholder generator (deterministic pattern)
+  function drawQR(svg, seed){
+    const N = 21, cell = 100/N; let rng = seed;
+    const rand = () => { rng = (rng*1103515245 + 12345) & 0x7fffffff; return rng/0x7fffffff; };
+    let cells = '';
+    for (let y=0;y<N;y++) for (let x=0;x<N;x++){
+      if (rand() > .52) cells += `<rect x="${(x*cell).toFixed(2)}" y="${(y*cell).toFixed(2)}" width="${cell.toFixed(2)}" height="${cell.toFixed(2)}"/>`;
+    }
+    // Finder squares
+    const finder = (fx,fy) => `
+      <rect x="${fx}" y="${fy}" width="${cell*7}" height="${cell*7}" fill="#222"/>
+      <rect x="${fx+cell}" y="${fy+cell}" width="${cell*5}" height="${cell*5}" fill="#fff"/>
+      <rect x="${fx+cell*2}" y="${fy+cell*2}" width="${cell*3}" height="${cell*3}" fill="#222"/>`;
+    svg.innerHTML = `<rect width="100" height="100" fill="#fff"/><g fill="#222">${cells}</g>${finder(0,0)}${finder(100-cell*7,0)}${finder(0,100-cell*7)}`;
+  }
+  drawQR(document.getElementById('qrApple'), 8675309);
+  drawQR(document.getElementById('qrGoogle'), 1234567);
+</script>
+</body>
+</html>
